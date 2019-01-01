@@ -1,8 +1,10 @@
 import { graphql, StaticQuery } from 'gatsby';
 import React from 'react';
-import { Box, Heading, Text } from 'rebass';
+import { Heading, Text } from 'rebass';
 import Container from './Container';
 import Section, { Props } from './Section';
+import ListItem from './ListItem';
+import List from './List';
 
 const OrderSection = (props: Props) => (
   <Section {...props}>
@@ -11,8 +13,7 @@ const OrderSection = (props: Props) => (
         Megrendelés
       </Heading>
 
-      <Box
-        as="ul"
+      <List
         {...props}
         css="
           display: flex;
@@ -36,8 +37,7 @@ const OrderSection = (props: Props) => (
           `}
           render={data =>
             data.allRulesYaml.edges.map(({ node }: any, index: number) => (
-              <Box
-                as="li"
+              <ListItem
                 key={node.id}
                 css={`
                   flex-basis: 100%;
@@ -80,11 +80,11 @@ const OrderSection = (props: Props) => (
                 >
                   {node.name}
                 </Text>
-              </Box>
+              </ListItem>
             ))
           }
         />
-      </Box>
+      </List>
     </Container>
   </Section>
 );
