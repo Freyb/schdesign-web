@@ -25,6 +25,7 @@
     "react-dom": "^16.7.0-alpha.2",
     "react-helmet": "^5.2.0",
     "react-images": "^1.0.0-alpha.3",
+    "react-responsive-modal": "^3.5.1",
     "rebass": "^3.0.0",
     "smoothscroll-polyfill": "^0.4.3",
     "styled-components": "^4.1.3",
