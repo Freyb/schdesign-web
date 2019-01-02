@@ -28,7 +28,16 @@ const OrderSection = (props: Props) => {
           sed enim lobortis imperdiet. Morbi sit amet ultricies arcu.
         </Paragraph>
         {/* There is a bug with the scrolling. Probably will be fixed soon */}
-        <Modal open={modalIsOpen} onClose={closeModal} center>
+        <Modal
+          open={modalIsOpen}
+          onClose={closeModal}
+          center
+          styles={{
+            modal: {
+              maxWidth: '1000px',
+            },
+          }}
+        >
           <OrderModal />
         </Modal>
       </Container>
