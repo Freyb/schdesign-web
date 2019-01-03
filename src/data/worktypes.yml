@@ -1,0 +1,12 @@
+- name: poster
+  image: ./worktypes/poster.png
+- name: fbcover
+  image: ./worktypes/fbcover.png
+- name: fbprofil
+  image: ./worktypes/fbprofil.png
+- name: logo
+  image: ./worktypes/logo.png
+- name: flyer
+  image: ./worktypes/flyer.png
+- name: door
+  image: ./worktypes/door.png
