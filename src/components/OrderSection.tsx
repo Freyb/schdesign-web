@@ -6,6 +6,7 @@ import Section, { Props } from './Section';
 import OrderModal from './OrderModal';
 import Paragraph from './Paragraph';
 import TextLink from './TextLink';
+import OrderForm from './OrderForm';
 
 const OrderSection = (props: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -27,6 +28,8 @@ const OrderSection = (props: Props) => {
           auctor mauris, id rhoncus ante vestibulum eget. Donec vulputate nisi
           sed enim lobortis imperdiet. Morbi sit amet ultricies arcu.
         </Paragraph>
+        <OrderForm />
+
         {/* There is a bug with the scrolling. Probably will be fixed soon */}
         <Modal
           open={modalIsOpen}
