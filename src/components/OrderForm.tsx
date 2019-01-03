@@ -5,23 +5,71 @@ import FormInput from './FormInput';
 import List from './List';
 import FormListItem from './FormListItem';
 
-const OrderForm = () => {
+type WorkImage = {
+  aspectRatio: number;
+  src: string;
+  srcSet: string;
+  sizes: string;
+  originalImg: string;
+  type: string;
+};
+
+type Props = {
+  images: {
+    [propName: string]: WorkImage;
+  };
+};
+
+type Work = {
+  id: number;
+  type: string;
+  deadline: Date;
+  description: string;
+};
+
+const OrderForm = ({ images }: Props) => {
   const [formName, setName] = useState('');
   const [formSubject, setSubject] = useState('');
   const [formEmail, setEmail] = useState('');
   const [ids, setId] = useState(0);
-  const [works, setWork] = useState([]);
+  const [works, setWork] = useState([] as Work[]);
 
   const increaseId = () => setId(ids + 1);
 
-  const addWork = (name: string, description: string) => {
-    setWork([{ id: ids, name, description }, ...works]);
+  const addWork = (description: string) => {
+    setWork([
+      { id: ids, type: description, deadline: new Date(), description: '' },
+      ...works,
+    ]);
     increaseId();
   };
 
+  const changeDate = (date: any, node: Work) => {
+    const newMarkers = works.map((el: Work) =>
+      el.id === node.id ? { ...el, deadline: date } : el,
+    );
+    setWork(newMarkers);
+  };
+
+  const changeDesc = (value: any, node: Work) => {
+    const newMarkers = works.map((el: Work) =>
+      el.id === node.id ? { ...el, description: value } : el,
+    );
+    setWork(newMarkers);
+  };
+
+  const deleteCb = (node: Work) => {
+    const newMarkers = works.filter((el: Work) => el.id !== node.id);
+    setWork(newMarkers);
+  };
+
   const handleSubmit = (event: any) => {
-    addWork(formName, formSubject);
+    addWork(formSubject);
     event.preventDefault();
+  };
+
+  const test = () => {
+    console.log(works);
   };
 
   return (
@@ -71,13 +119,17 @@ const OrderForm = () => {
           />
         </Container>
         <input type="submit" value="Submit" />
+        <input type="button" value="Test" onClick={test} />
         <List px={0}>
-          {works.map((node: any) => (
+          {works.map((node: Work) => (
             <FormListItem
               key={node.id}
-              type="fb"
-              name={node.name}
-              description={node.description}
+              fluid={images[node.type]}
+              date={node.deadline}
+              setDate={(date: any) => changeDate(date, node)}
+              desc={node.description}
+              setDesc={(e: any) => changeDesc(e.target.value, node)}
+              deleteCb={() => deleteCb(node)}
             />
           ))}
         </List>

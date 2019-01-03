@@ -1,3 +1,4 @@
+import { graphql, StaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import { Heading, Text } from 'rebass';
 import Modal from 'react-responsive-modal';
@@ -28,7 +29,39 @@ const OrderSection = (props: Props) => {
           auctor mauris, id rhoncus ante vestibulum eget. Donec vulputate nisi
           sed enim lobortis imperdiet. Morbi sit amet ultricies arcu.
         </Paragraph>
-        <OrderForm />
+
+        <StaticQuery
+          query={graphql`
+            {
+              allWorktypesYaml {
+                edges {
+                  node {
+                    name
+                    image {
+                      childImageSharp {
+                        fluid {
+                          ...GatsbyImageSharpFluid
+                          originalImg
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          `}
+          render={data => (
+            <OrderForm
+              images={data.allWorktypesYaml.edges.reduce(
+                (acc: any, curr: any) => {
+                  acc[curr.node.name] = curr.node.image.childImageSharp.fluid;
+                  return acc;
+                },
+                {},
+              )}
+            />
+          )}
+        />
 
         {/* There is a bug with the scrolling. Probably will be fixed soon */}
         <Modal
