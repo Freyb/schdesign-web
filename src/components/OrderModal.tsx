@@ -2,18 +2,16 @@ import { graphql, StaticQuery } from 'gatsby';
 import React from 'react';
 import { Heading, Text } from 'rebass';
 import Container from './Container';
-import { Props } from './Section';
 import ListItem from './ListItem';
 import List from './List';
 
-const OrderModal = (props: Props) => (
+const OrderModal = () => (
   <Container as={Text} textAlign="left">
     <Heading id="order" textAlign="center" mb={4}>
       Szabályzat
     </Heading>
 
     <List
-      {...props}
       css="
           display: flex;
           flex-wrap: wrap;

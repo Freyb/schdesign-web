@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Text } from 'rebass';
-import { Box } from 'rebass';
-import { Flex } from 'rebass';
+import { Box, Flex, Text } from 'rebass';
 import Container from './Container';
 import FormInput from './FormInput';
 
@@ -63,11 +61,6 @@ const OrderForm = () => {
         </Container>
         <input type="submit" value="Submit" />
       </Box>
-      {name}
-      <br />
-      {subject}
-      <br />
-      {email}
     </Container>
   );
 };
