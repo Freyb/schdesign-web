@@ -43,15 +43,16 @@ class CalendarInput extends Component {
         as="button"
         onClick={onClick}
         css="
-      cursor: pointer;
-      padding: 5px 15px;
-      border: solid 2px #f8485e;
-      border-radius: 4px;
-      background-color: #fff;
-      font: inherit;
-      font-weight: bold;
-      color: #f8485e;
-    "
+          cursor: pointer;
+          padding: 5px 15px;
+          border: solid 2px #f8485e;
+          border-radius: 4px;
+          background-color: #fff;
+          font: inherit;
+          font-weight: bold;
+          color: #f8485e;
+          outline: none;
+        "
       >
         {value}
       </Box>
