@@ -1,12 +1,15 @@
 import Img from 'gatsby-image';
 import React, { useState } from 'react';
-import { Box, Heading, Text } from 'rebass';
-import DatePicker from 'react-datepicker';
+import { Box, Flex, Heading, Text } from 'rebass';
 import Container from './Container';
 import List from './List';
 import Paragraph from './Paragraph';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import TextLink from './TextLink';
+
+import './NewWorkModal.css';
+import CustomDate, { addDays } from './CustomDate';
 
 type Props = {
   images: {
@@ -23,7 +26,7 @@ type Props = {
 
 const NewWorkModal = ({ images, newWorkCb }: Props) => {
   const [renderType, setRender] = useState(-1);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(addDays(new Date(), 7));
   const [desc, setDesc] = useState('');
 
   const handleOk = () => newWorkCb(renderType, date, desc);
@@ -56,17 +59,42 @@ const NewWorkModal = ({ images, newWorkCb }: Props) => {
       )}
       {renderType >= 0 && (
         <Box as="div">
-          <Box as="div" css="width: 100%; border: solid 1px black;">
-            <input type="button" value="back" onClick={() => setRender(-1)} />
-            <Box as={Img} fluid={images[renderType]} m={1} />
-            <Paragraph>{images[renderType].label}</Paragraph>
-            <DatePicker selected={date} onChange={setDate} />
+          <Box as="div">
+            <TextLink onClick={() => setRender(-1)}>Vissza</TextLink>
+          </Box>
+          <Box as={Flex} mt="2" flexDirection={['column', null, 'row']}>
             <Box
-              as="textarea"
-              value={desc}
-              onChange={(e: any) => setDesc(e.target.value)}
+              as={Img}
+              fluid={images[renderType]}
+              css="width: 40%; min-width: 100px; flex-shrink: 0; margin: auto;"
             />
-            <input type="button" value="ok" onClick={handleOk} />
+            <Box
+              as={Flex}
+              flexDirection="column"
+              css="flex-grow: 1; align-items: center;"
+            >
+              <Text mb="1" css="font-weight: bold;">
+                Határidő:
+              </Text>
+
+              <CustomDate date={date} setDate={setDate} />
+
+              <Text mt="4" mb="1" css="font-weight: bold;">
+                Megjegyzés:
+              </Text>
+              <Box
+                as="textarea"
+                value={desc}
+                onChange={(e: any) => setDesc(e.target.value)}
+              />
+
+              <Box
+                alignSelf={[null, null, 'flex-end']}
+                css="flex-grow: 1; display:flex; align-items: flex-end;"
+              >
+                <TextLink onClick={handleOk}>Ok</TextLink>
+              </Box>
+            </Box>
           </Box>
         </Box>
       )}
