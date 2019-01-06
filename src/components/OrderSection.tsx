@@ -37,6 +37,7 @@ const OrderSection = (props: Props) => {
                 edges {
                   node {
                     name
+                    label
                     image {
                       childImageSharp {
                         fluid {
@@ -52,13 +53,21 @@ const OrderSection = (props: Props) => {
           `}
           render={data => (
             <OrderForm
-              images={data.allWorktypesYaml.edges.reduce(
+              /* images={data.allWorktypesYaml.edges.reduce(
                 (acc: any, curr: any) => {
-                  acc[curr.node.name] = curr.node.image.childImageSharp.fluid;
+                  acc[curr.node.name] = {
+                    ...curr.node.image.childImageSharp.fluid,
+                    label: curr.node.label,
+                  };
                   return acc;
                 },
                 {},
-              )}
+              )} */
+              images={data.allWorktypesYaml.edges.map(({ node }: any) => ({
+                ...node.image.childImageSharp.fluid,
+                name: node.name,
+                label: node.label,
+              }))}
             />
           )}
         />
