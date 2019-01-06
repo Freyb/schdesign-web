@@ -1,9 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import { Box } from 'rebass';
-import DatePicker from 'react-datepicker';
-
-import 'react-datepicker/dist/react-datepicker.css';
+import CustomDate from './CustomDate';
 
 type Props = {
   date: Date;
@@ -27,7 +25,7 @@ const FormListItem = ({
     css="display: flex; align-items: center; border: solid 1px black; margin-bottom: 0.5rem;"
   >
     <Box as={Img} {...props} flex="0 1 80px" m={1} />
-    <DatePicker selected={date} onChange={setDate} />
+    <CustomDate date={date} setDate={setDate} />
     <Box as="textarea" value={desc} onChange={setDesc} />
     <input type="button" value="delete" onClick={deleteCb} />
   </Box>

@@ -45,11 +45,12 @@ class CalendarInput extends Component {
         css="
       cursor: pointer;
       padding: 5px 15px;
-      border: 0;
+      border: solid 2px #f8485e;
       border-radius: 4px;
-      background-color: #f8485e;
+      background-color: #fff;
       font: inherit;
-      color: #fff;
+      font-weight: bold;
+      color: #f8485e;
     "
       >
         {value}
