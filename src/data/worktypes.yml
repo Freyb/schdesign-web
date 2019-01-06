@@ -1,12 +1,18 @@
 - name: poster
+  label: 'Plakát'
   image: ./worktypes/poster.png
 - name: fbcover
+  label: 'FB borítókép'
   image: ./worktypes/fbcover.png
 - name: fbprofil
+  label: 'FB profilkép'
   image: ./worktypes/fbprofil.png
 - name: logo
+  label: 'Logó'
   image: ./worktypes/logo.png
 - name: flyer
+  label: 'Szórólap'
   image: ./worktypes/flyer.png
 - name: door
+  label: 'Ajtócédula'
   image: ./worktypes/door.png
