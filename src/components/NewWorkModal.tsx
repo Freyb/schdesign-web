@@ -10,6 +10,7 @@ import TextLink from './TextLink';
 
 import './NewWorkModal.css';
 import CustomDate, { addDays } from './CustomDate';
+import CustomTextArea from './CustomTextArea';
 
 type Props = {
   images: {
@@ -79,17 +80,18 @@ const NewWorkModal = ({ images, newWorkCb }: Props) => {
 
               <CustomDate date={date} setDate={setDate} />
 
-              <Text mt="4" mb="1" css="font-weight: bold;">
+              <Text mt="3" mb="1" css="font-weight: bold;">
                 Megjegyzés:
               </Text>
-              <Box
-                as="textarea"
+
+              <CustomTextArea
                 value={desc}
                 onChange={(e: any) => setDesc(e.target.value)}
               />
 
               <Box
                 alignSelf={[null, null, 'flex-end']}
+                mt="1"
                 css="flex-grow: 1; display:flex; align-items: flex-end;"
               >
                 <TextLink onClick={handleOk}>Ok</TextLink>
