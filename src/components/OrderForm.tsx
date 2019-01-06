@@ -58,9 +58,8 @@ const OrderForm = ({ images }: Props) => {
 
   /* Open / Close Modal */
   const closeModal = () => setModalIsOpen(false);
-  const openModal = (event: any) => {
+  const openModal = () => {
     setModalIsOpen(true);
-    event.preventDefault();
   };
 
   /* Add new work */
@@ -94,7 +93,7 @@ const OrderForm = ({ images }: Props) => {
 
   /* Submit */
   const handleSubmit = (event: any) => {
-    addWork(formSubject);
+    console.log('asdas');
     event.preventDefault();
   };
 
@@ -140,12 +139,12 @@ const OrderForm = ({ images }: Props) => {
         </Container>
 
         <IconLink
+          as="button"
           icon={PlusCircle}
-          href="#"
           title="New Work"
           onClick={openModal}
         />
-        <input type="submit" value="Submit" />
+        <IconLink as="button" type="submit" icon={ShareSquare} title="Submit" />
         <input type="button" value="Test" onClick={test} />
 
         <List px={0}>
@@ -170,7 +169,7 @@ const OrderForm = ({ images }: Props) => {
         styles={{
           modal: {
             maxWidth: '1000px',
-            width: '80%',
+            width: '50%',
           },
         }}
       >

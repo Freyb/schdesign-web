@@ -4,17 +4,23 @@ import { StyledIcon } from 'styled-icons';
 
 type Props = {
   icon: StyledIcon;
+  as?: string;
   href?: string;
   title?: string;
   [propName: string]: any; // TODO: Extend type of `Box`
 };
 
-const IconLink = ({ icon: Icon, title, ...props }: Props) => (
+const IconLink = ({ icon: Icon, as, title, ...props }: Props) => (
   <Box
-    as="a"
+    as={as || 'a'}
     {...props}
     css={`
+      background: none;
       color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
       :hover {
         color: ${({ theme }: any) => theme.colors.red};
       }
