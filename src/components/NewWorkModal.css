@@ -1,0 +1,10 @@
+.hlRed {
+  color: red;
+}
+.hlOrange {
+  color: orange;
+}
+.today {
+  color: red;
+  border: solid 1px red;
+}
