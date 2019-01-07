@@ -70,6 +70,7 @@ const OrderModal = () => (
               <Text
                 css={`
                   align-self: center;
+                  white-space: pre-wrap;
                   @media (min-width: 1024px) {
                     align-self: flex-start;
                   }

@@ -1,4 +1,6 @@
-- name: 'A projekt megkezdése előtt minden grafikai munkára kötelező határidőt megadni. Kérjük azt a dátumot add meg, amire el kell készítenünk a munkákat. (Javaslat: Vedd figyelembe, hogy ennek a határidőnek a végleges publikálás előtt néhány nappal kell lennie. A nyomdák 1-3 napos határidővel is dolgozhatnak, póló szitázás esetében akár 1,5 hetet is érdemes rászámolni.)'
+- name: |
+    A projekt megkezdése előtt minden grafikai munkára kötelező határidőt megadni. Kérjük azt a dátumot add meg, amire el kell készítenünk a munkákat.
+    (Javaslat: Vedd figyelembe, hogy ennek a határidőnek a végleges publikálás előtt néhány nappal kell lennie. A nyomdák 1-3 napos határidővel is dolgozhatnak, póló szitázás esetében akár 1,5 hetet is érdemes rászámolni.)
 - name: 'A megkeresés beérkezése és a legkorábbi határidő között - a projekt méretétől függően, de - legalább 3 napnak el kell telnie. A rövidebb határidők esetén nem biztos, hogy el tudjuk vállalni a projektet. Amennyiben mégis, nyomatékosan jelezzük, hogy minden körtag szereti a csokoládét és a sört.'
 - name: 'A visszajelzés beérkezése és az az alapján elkészített újabb verzió között legalább 3 nap munkaidővel élhetünk.'
 - name: 'A visszajelzésekre 24 órán belül válaszolunk, hogy a következő verzió mikorra várható.'
