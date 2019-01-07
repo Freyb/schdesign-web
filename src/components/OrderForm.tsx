@@ -5,7 +5,7 @@ import { PlusCircle, ShareSquare, TrashAlt } from 'styled-icons/fa-solid';
 import Container from './Container';
 import FormInput from './FormInput';
 import List from './List';
-import FormListItem from './FormListItem';
+import FormListItem, { dateToString } from './FormListItem';
 import IconLink from './IconLink';
 import NewWorkModal from './NewWorkModal';
 import EditWorkModal from './EditWorkModal';
@@ -114,7 +114,30 @@ const OrderForm = ({ images }: Props) => {
 
   /* Submit */
   const handleSubmit = (event: any) => {
-    console.log('asdas');
+    const data = works.reduce((acc: any, curr: Work) => {
+      const ret = [
+        ...acc,
+        {
+          type: images[curr.type].label,
+          deadline: dateToString(curr.deadline),
+          description: curr.description,
+        },
+      ];
+      return ret;
+    }, []);
+    const req = {
+      name: formName,
+      subject: formSubject,
+      email: formEmail,
+      works: data,
+    };
+    fetch('http://localhost:8100/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req),
+    });
     event.preventDefault();
   };
 
