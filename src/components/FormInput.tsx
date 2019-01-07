@@ -14,7 +14,7 @@ const FormInput = ({ text, id, ...props }: Props) => (
       htmlFor={id}
       css="
         display: block;
-        width: 100px;
+        min-width: 4rem;
         font-weight: bold;
         font-size: 1em;
       "
@@ -23,6 +23,7 @@ const FormInput = ({ text, id, ...props }: Props) => (
     </Box>
     <Box
       as="input"
+      size="1"
       id={id}
       css="
         flex: 1;

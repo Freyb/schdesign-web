@@ -1,7 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import { Box, Text } from 'rebass';
-import { Edit, Times } from 'styled-icons/fa-solid';
+import { Edit, Ban } from 'styled-icons/fa-solid';
 import IconLink from './IconLink';
 
 type Props = {
@@ -63,7 +63,7 @@ const FormListItem = ({
       >
         {desc}
       </Text>
-      <Box ml={[null, 3]} mt={[3, 0]}>
+      <Box ml={[null, 3]} mt={[3, 0]} css="font-size: 2rem;">
         <IconLink
           as="button"
           type="button"
@@ -74,7 +74,7 @@ const FormListItem = ({
         <IconLink
           as="button"
           type="button"
-          icon={Times}
+          icon={Ban}
           title="Delete"
           onClick={deleteCb}
         />

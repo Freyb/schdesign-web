@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Flex, Text } from 'rebass';
 import Modal from 'react-responsive-modal';
-import { PlusCircle, ShareSquare, Times } from 'styled-icons/fa-solid';
+import { PlusCircle, ShareSquare, TrashAlt } from 'styled-icons/fa-solid';
 import Container from './Container';
 import FormInput from './FormInput';
 import List from './List';
@@ -135,12 +135,12 @@ const OrderForm = ({ images }: Props) => {
         onSubmit={handleSubmit}
         css={`
           margin: auto;
-          @media (min-width: 1024px) {
+          @media (min-width: 600px) {
             width: 80%;
           }
         `}
       >
-        <Container as={Flex} flexDirection={['column', 'row']} my={[null, 2]}>
+        <Box as={Flex} flexDirection={['column', 'row']} my={[null, 2]}>
           <FormInput
             text="Név"
             id="name"
@@ -154,35 +154,44 @@ const OrderForm = ({ images }: Props) => {
             value={formSubject}
             onChange={(e: any) => setSubject(e.target.value)}
           />
-        </Container>
+        </Box>
 
-        <Container as={Flex} flexDirection={['column', 'row']} my={[null, 2]}>
+        <Box as={Flex} flexDirection={['column', 'row']} my={[null, 2]}>
           <FormInput
             text="Email"
             id="email"
             value={formEmail}
             onChange={(e: any) => setEmail(e.target.value)}
           />
-        </Container>
+        </Box>
 
-        <IconLink as="button" type="submit" icon={ShareSquare} title="Submit" />
-        <IconLink
-          as="button"
-          type="button"
-          icon={PlusCircle}
-          title="New Work"
-          onClick={openNewModal}
-        />
-        <IconLink
-          as="button"
-          type="button"
-          icon={Times}
-          title="Delete all"
-          onClick={deleteAll}
-        />
-        <input type="button" value="Test" onClick={test} />
+        <Box as={Flex} css="font-size: 2rem;" my={[null, 2]}>
+          <IconLink
+            as="button"
+            type="submit"
+            icon={ShareSquare}
+            title="Submit"
+          />
+          <Box as={Flex} css="flex-grow: 1; justify-content: flex-end;">
+            <IconLink
+              as="button"
+              type="button"
+              icon={PlusCircle}
+              title="Add work"
+              onClick={openNewModal}
+              mr="2"
+            />
+            <IconLink
+              as="button"
+              type="button"
+              icon={TrashAlt}
+              title="Delete all"
+              onClick={deleteAll}
+            />
+          </Box>
+        </Box>
 
-        <List px={0}>
+        <List px={0} m={0}>
           {works.map((node: Work, index: number) => (
             <FormListItem
               key={node.id}
@@ -229,6 +238,8 @@ const OrderForm = ({ images }: Props) => {
           okButtonCb={editWork}
         />
       </Modal>
+
+      <input type="button" value="Test" onClick={test} />
     </Container>
   );
 };
