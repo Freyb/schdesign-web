@@ -7,17 +7,16 @@ type Props = {
   [propName: string]: any; // TODO: Extend type of `Box`
 };
 
-const CustomTextArea = ({ value, onChange, ...props }: Props) => (
+const CustomTextArea = ({ value, onChange }: Props) => (
   <Box
     as="textarea"
     value={value}
     onChange={onChange}
     css="
       width: 100%;
-      height: 5.5rem;
-      border: solid 2px #f8485e;
+      height: 8rem;
+      border: solid 2px black;
       border-radius: 5px;
-      color: #f8485e;
       font: inherit;
       font-size: 1rem;
       font-weight: bold;

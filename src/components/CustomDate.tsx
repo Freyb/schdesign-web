@@ -34,6 +34,12 @@ import { hu } from 'date-fns/locale';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+export const addDays = (d: Date, days: number) => {
+  const result = new Date(d);
+  result.setDate(result.getDate() + days);
+  return result;
+};
+
 // eslint-disable-next-line react/prefer-stateless-function
 class CalendarInput extends Component {
   render() {
@@ -45,12 +51,11 @@ class CalendarInput extends Component {
         css="
           cursor: pointer;
           padding: 5px 15px;
-          border: solid 2px #f8485e;
+          border: solid 2px black;
           border-radius: 4px;
           background-color: #fff;
           font: inherit;
           font-weight: bold;
-          color: #f8485e;
           outline: none;
         "
       >
@@ -63,12 +68,6 @@ class CalendarInput extends Component {
 type Props = {
   date: Date;
   setDate: (d: Date) => void;
-};
-
-export const addDays = (d: Date, days: number) => {
-  const result = new Date(d);
-  result.setDate(result.getDate() + days);
-  return result;
 };
 
 const CustomDate = ({ date, setDate }: Props) => {
