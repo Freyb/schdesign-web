@@ -21,13 +21,9 @@ const OrderSection = (props: Props) => {
         <Heading id="order" textAlign="center" my={4}>
           Megrendelés
         </Heading>
-        <Paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et elit
-          quis orci maximus porttitor. Pellentesque ac enim euismod, fermentum
-          quam sit amet, lacinia justo.{' '}
-          <TextLink onClick={openModal}>Szabályzat</TextLink> Aenean ultrices
-          auctor mauris, id rhoncus ante vestibulum eget. Donec vulputate nisi
-          sed enim lobortis imperdiet. Morbi sit amet ultricies arcu.
+        <Paragraph textAlign="center">
+          Kérjük, hogy mielőtt leadsz egy rendelést, figyelmesen olvasd el a{' '}
+          <TextLink onClick={openModal}>szabályzatot</TextLink>. Köszönjük!
         </Paragraph>
 
         <StaticQuery
