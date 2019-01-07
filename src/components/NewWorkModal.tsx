@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Box, Flex, Heading, Text } from 'rebass';
 import Container from './Container';
 import List from './List';
-import Paragraph from './Paragraph';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import TextLink from './TextLink';
@@ -50,9 +49,19 @@ const NewWorkModal = ({ images, newWorkCb }: Props) => {
               css="display: flex; align-items: center; border: solid 0px red;"
               onClick={() => setRender(index)}
             >
-              <Box as="div" css="width: 100%; border: solid 1px black;">
-                <Box as={Img} fluid={node} m={1} />
-                <Paragraph>{node.label}</Paragraph>
+              <Box
+                as="div"
+                css="width: 100%; min-width: 110px; border: solid 1px grey; box-shadow: 1px 1px 5px;"
+              >
+                <Box
+                  as={Img}
+                  fluid={node}
+                  m={2}
+                  css="border: solid 1px black;"
+                />
+                <Text my={2} css="text-align:center;">
+                  {node.label}
+                </Text>
               </Box>
             </Box>
           ))}
@@ -67,6 +76,7 @@ const NewWorkModal = ({ images, newWorkCb }: Props) => {
             <Box
               as={Img}
               fluid={images[renderType]}
+              mr={[null, null, 2]}
               css="width: 40%; min-width: 100px; flex-shrink: 0; margin: auto;"
             />
             <Box
