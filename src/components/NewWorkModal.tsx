@@ -1,15 +1,13 @@
 import Img from 'gatsby-image';
 import React, { useState } from 'react';
-import { Box, Flex, Heading, Text } from 'rebass';
+import { Box, Heading, Text } from 'rebass';
 import Container from './Container';
 import List from './List';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import TextLink from './TextLink';
 
-import './NewWorkModal.css';
-import CustomDate, { addDays } from './CustomDate';
-import CustomTextArea from './CustomTextArea';
+import WorkDetails from './WorkDetails';
 
 type Props = {
   images: {
@@ -21,15 +19,11 @@ type Props = {
     name: string;
     label: string;
   }[];
-  newWorkCb: (renderType: number, date: Date, desc: string) => void;
+  okButtonCb: (renderType: number, date: Date, desc: string) => void;
 };
 
-const NewWorkModal = ({ images, newWorkCb }: Props) => {
+const NewWorkModal = ({ images, okButtonCb }: Props) => {
   const [renderType, setRender] = useState(-1);
-  const [date, setDate] = useState(addDays(new Date(), 7));
-  const [desc, setDesc] = useState('');
-
-  const handleOk = () => newWorkCb(renderType, date, desc);
 
   return (
     <Container as={Text} textAlign="left">
@@ -72,42 +66,11 @@ const NewWorkModal = ({ images, newWorkCb }: Props) => {
           <Box as="div">
             <TextLink onClick={() => setRender(-1)}>Vissza</TextLink>
           </Box>
-          <Box as={Flex} mt="2" flexDirection={['column', null, 'row']}>
-            <Box
-              as={Img}
-              fluid={images[renderType]}
-              mr={[null, null, 2]}
-              css="width: 40%; min-width: 100px; flex-shrink: 0; margin: auto;"
-            />
-            <Box
-              as={Flex}
-              flexDirection="column"
-              css="flex-grow: 1; align-items: center;"
-            >
-              <Text mb="1" css="font-weight: bold;">
-                Határidő:
-              </Text>
-
-              <CustomDate date={date} setDate={setDate} />
-
-              <Text mt="3" mb="1" css="font-weight: bold;">
-                Megjegyzés:
-              </Text>
-
-              <CustomTextArea
-                value={desc}
-                onChange={(e: any) => setDesc(e.target.value)}
-              />
-
-              <Box
-                alignSelf={[null, null, 'flex-end']}
-                mt="1"
-                css="flex-grow: 1; display:flex; align-items: flex-end;"
-              >
-                <TextLink onClick={handleOk}>Ok</TextLink>
-              </Box>
-            </Box>
-          </Box>
+          <WorkDetails
+            images={images}
+            type={renderType}
+            okButtonCb={okButtonCb}
+          />
         </Box>
       )}
     </Container>

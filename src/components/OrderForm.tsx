@@ -8,6 +8,7 @@ import List from './List';
 import FormListItem from './FormListItem';
 import IconLink from './IconLink';
 import NewWorkModal from './NewWorkModal';
+import EditWorkModal from './EditWorkModal';
 
 /* type WorkImage = {
   aspectRatio: number;
@@ -54,41 +55,58 @@ const OrderForm = ({ images }: Props) => {
   const [works, setWork] = useState([] as Work[]);
 
   /* Modal */
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [newModalState, setNewModalState] = useState(false);
+  const [editModalState, setEditModalState] = useState({
+    node: -1,
+    open: false,
+  });
 
   /* Open / Close Modal */
-  const closeModal = () => setModalIsOpen(false);
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
+  const closeNewModal = () => setNewModalState(false);
+  const openNewModal = () => setNewModalState(true);
+  const closeEditModal = () =>
+    setEditModalState({ ...editModalState, open: false });
+  const openEditModal = (i: number) =>
+    setEditModalState({ node: i, open: true });
 
   /* Add new work */
   const increaseId = () => setId(ids + 1);
   const addWork = (renderType: number, date: Date, desc: string) => {
     setWork([
-      { id: ids, type: renderType, deadline: date, description: desc },
       ...works,
+      { id: ids, type: renderType, deadline: date, description: desc },
     ]);
     increaseId();
-    closeModal();
+    closeNewModal();
   };
 
   /* Modify / Delete work */
-  const changeDate = (date: any, node: Work) => {
+  const changeDate = (date: any, index: number) => {
     const newMarkers = works.map((el: Work) =>
-      el.id === node.id ? { ...el, deadline: date } : el,
+      el.id === works[index].id ? { ...el, deadline: date } : el,
     );
     setWork(newMarkers);
   };
-  const changeDesc = (value: any, node: Work) => {
+  const changeDesc = (value: any, index: number) => {
     const newMarkers = works.map((el: Work) =>
-      el.id === node.id ? { ...el, description: value } : el,
+      el.id === works[index].id ? { ...el, description: value } : el,
     );
     setWork(newMarkers);
   };
-  const deleteCb = (node: Work) => {
-    const newMarkers = works.filter((el: Work) => el.id !== node.id);
+  const editWork = (renderType: number, date: Date, desc: string) => {
+    const newMarkers = works.map((el: Work) =>
+      el.id === works[editModalState.node].id
+        ? { ...el, deadline: date, description: desc }
+        : el,
+    );
     setWork(newMarkers);
+    closeEditModal();
+  };
+  const deleteCb = (index: number) => {
+    /* const newMarkers = works.filter((el: Work) => el.id !== node.id); */
+    const newWorks = [...works];
+    newWorks.splice(index, 1);
+    setWork(newWorks);
   };
 
   /* Submit */
@@ -98,7 +116,13 @@ const OrderForm = ({ images }: Props) => {
   };
 
   const test = () => {
-    console.log(images);
+    addWork(
+      Math.floor(Math.random() * 6),
+      new Date(),
+      Math.random()
+        .toString(36)
+        .substring(7),
+    );
   };
 
   return (
@@ -140,40 +164,60 @@ const OrderForm = ({ images }: Props) => {
 
         <IconLink
           as="button"
+          type="button"
           icon={PlusCircle}
           title="New Work"
-          onClick={openModal}
+          onClick={openNewModal}
         />
         <IconLink as="button" type="submit" icon={ShareSquare} title="Submit" />
         <input type="button" value="Test" onClick={test} />
 
         <List px={0}>
-          {works.map((node: Work) => (
+          {works.map((node: Work, index: number) => (
             <FormListItem
               key={node.id}
               fluid={images[node.type]}
               date={node.deadline}
-              setDate={(date: any) => changeDate(date, node)}
+              setDate={(date: any) => changeDate(date, index)}
               desc={node.description}
-              setDesc={(e: any) => changeDesc(e.target.value, node)}
-              deleteCb={() => deleteCb(node)}
+              setDesc={(e: any) => changeDesc(e.target.value, index)}
+              editCb={() => openEditModal(index)}
+              deleteCb={() => deleteCb(index)}
             />
           ))}
         </List>
       </Box>
 
       <Modal
-        open={modalIsOpen}
-        onClose={closeModal}
+        open={newModalState}
+        onClose={closeNewModal}
         center
         styles={{
           modal: {
             maxWidth: '1000px',
-            width: '50%',
+            width: '70%',
           },
         }}
       >
-        <NewWorkModal images={images} newWorkCb={addWork} />
+        <NewWorkModal images={images} okButtonCb={addWork} />
+      </Modal>
+
+      <Modal
+        open={editModalState.open}
+        onClose={closeEditModal}
+        center
+        styles={{
+          modal: {
+            maxWidth: '1000px',
+            width: '70%',
+          },
+        }}
+      >
+        <EditWorkModal
+          images={images}
+          node={works[editModalState.node]}
+          okButtonCb={editWork}
+        />
       </Modal>
     </Container>
   );
