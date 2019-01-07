@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Flex, Text } from 'rebass';
 import Modal from 'react-responsive-modal';
-import { PlusCircle, ShareSquare } from 'styled-icons/fa-solid';
+import { PlusCircle, ShareSquare, Times } from 'styled-icons/fa-solid';
 import Container from './Container';
 import FormInput from './FormInput';
 import List from './List';
@@ -108,6 +108,9 @@ const OrderForm = ({ images }: Props) => {
     newWorks.splice(index, 1);
     setWork(newWorks);
   };
+  const deleteAll = () => {
+    setWork([]);
+  };
 
   /* Submit */
   const handleSubmit = (event: any) => {
@@ -162,6 +165,7 @@ const OrderForm = ({ images }: Props) => {
           />
         </Container>
 
+        <IconLink as="button" type="submit" icon={ShareSquare} title="Submit" />
         <IconLink
           as="button"
           type="button"
@@ -169,7 +173,13 @@ const OrderForm = ({ images }: Props) => {
           title="New Work"
           onClick={openNewModal}
         />
-        <IconLink as="button" type="submit" icon={ShareSquare} title="Submit" />
+        <IconLink
+          as="button"
+          type="button"
+          icon={Times}
+          title="Delete all"
+          onClick={deleteAll}
+        />
         <input type="button" value="Test" onClick={test} />
 
         <List px={0}>
