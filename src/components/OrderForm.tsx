@@ -9,6 +9,7 @@ import FormListItem, { dateToString } from './FormListItem';
 import IconLink from './IconLink';
 import NewWorkModal from './NewWorkModal';
 import EditWorkModal from './EditWorkModal';
+import ResponseModal from './ResponseModal';
 
 /* type WorkImage = {
   aspectRatio: number;
@@ -60,6 +61,10 @@ const OrderForm = ({ images }: Props) => {
     node: -1,
     open: false,
   });
+  const [resModalState, setResModalState] = useState({
+    status: 0,
+    open: false,
+  });
 
   /* Open / Close Modal */
   const closeNewModal = () => setNewModalState(false);
@@ -68,6 +73,10 @@ const OrderForm = ({ images }: Props) => {
     setEditModalState({ ...editModalState, open: false });
   const openEditModal = (i: number) =>
     setEditModalState({ node: i, open: true });
+  const closeResModal = () =>
+    setResModalState({ ...resModalState, open: false });
+  const openResModal = (s: number) =>
+    setResModalState({ status: s, open: true });
 
   /* Add new work */
   const increaseId = () => setId(ids + 1);
@@ -137,7 +146,13 @@ const OrderForm = ({ images }: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(req),
-    });
+    })
+      .then(() => {
+        openResModal(1);
+      })
+      .catch(() => {
+        openResModal(0);
+      });
     event.preventDefault();
   };
 
@@ -260,6 +275,20 @@ const OrderForm = ({ images }: Props) => {
           node={works[editModalState.node]}
           okButtonCb={editWork}
         />
+      </Modal>
+
+      <Modal
+        open={resModalState.open}
+        onClose={closeResModal}
+        center
+        styles={{
+          modal: {
+            maxWidth: '1000px',
+            width: '70%',
+          },
+        }}
+      >
+        <ResponseModal status={resModalState.status} />
       </Modal>
 
       <input type="button" value="Test" onClick={test} />
