@@ -5,7 +5,7 @@ import { PlusCircle, ShareSquare, TrashAlt } from 'styled-icons/fa-solid';
 import Container from './Container';
 import FormInput from './FormInput';
 import List from './List';
-import FormListItem, { dateToString } from './FormListItem';
+import FormListItem from './FormListItem';
 import IconLink from './IconLink';
 import NewWorkModal from './NewWorkModal';
 import EditWorkModal from './EditWorkModal';
@@ -128,7 +128,7 @@ const OrderForm = ({ images }: Props) => {
         ...acc,
         {
           type: images[curr.type].label,
-          deadline: dateToString(curr.deadline),
+          deadline: curr.deadline.toISOString().slice(0, 10),
           description: curr.description,
         },
       ];
