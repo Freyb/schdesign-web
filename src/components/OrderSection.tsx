@@ -1,7 +1,7 @@
 import { graphql, StaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import { Heading, Text } from 'rebass';
-import Modal from 'react-responsive-modal';
+import Modal from 'react-modal';
 import Container from './Container';
 import Section, { Props } from './Section';
 import OrderModal from './OrderModal';
@@ -68,14 +68,14 @@ const OrderSection = (props: Props) => {
           )}
         />
 
-        {/* There is a bug with the scrolling. Probably will be fixed soon */}
         <Modal
-          open={modalIsOpen}
-          onClose={closeModal}
-          center
-          styles={{
-            modal: {
-              maxWidth: '1000px',
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={{
+            content: {
+              width: '50%',
+              left: '50%',
+              transform: 'translateX(-50%)',
             },
           }}
         >

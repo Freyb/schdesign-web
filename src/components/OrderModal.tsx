@@ -39,8 +39,8 @@ const OrderModal = () => (
               css={`
                 flex-basis: 100%;
                 margin-bottom: 1.5rem;
-                @media (min-width: 1024px) {
-                  flex-basis: 50%;
+                @media (min-width: 1440px) {
+                  flex-basis: 45%;
                   padding: 0 1rem;
                 }
                 display: flex;
@@ -49,18 +49,17 @@ const OrderModal = () => (
               <Text
                 as="div"
                 css="
-                      flex: 0 0 4rem;
                       margin-right: 0.5rem;
                     "
               >
                 <Text
                   as="div"
                   css="
-                      width: 4rem;
-                      height: 4rem;
-                      font-size: 3rem;
+                      width: 3rem;
+                      height: 3rem;
+                      font-size: 2rem;
                       font-family: 'Roboto Mono, monospace';
-                      line-height: 4rem;
+                      line-height: 3rem;
                       text-align: center;
                       background-color: #f8485e;
                       border-radius: 250px;
