@@ -1,27 +1,21 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
-  "plugins": ["typescript", "react-hooks"],
+  "root": true,
+  "plugins": ["react-hooks"],
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+  ],
   "env": {
     "browser": true
   },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".ts", ".tsx", ".js", ".jsx"]
-      }
-    }
-  },
   "rules": {
-    "react-hooks/rules-of-hooks": "error"
-  },
-  "overrides": [
-    {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "parser": "typescript-eslint-parser",
-      "rules": {
-        "typescript/no-unused-vars": "error",
-        "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }]
-      }
-    }
-  ]
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }]
+  }
 }

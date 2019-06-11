@@ -19,10 +19,11 @@ const theme = {
     textTransform: 'lowercase',
   },
   Link: {
-    textUnderlinePosition: 'under',
+    padding: '0.125em 0',
     textDecoration: 'none',
-    ':hover': {
-      textDecoration: 'underline',
+    'p &:hover': {
+      background: '#f8485e',
+      color: 'white',
     },
   },
 };

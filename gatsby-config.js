@@ -18,8 +18,23 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
-    'gatsby-plugin-favicon',
-    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        /* eslint-disable @typescript-eslint/camelcase */
+        name: 'Schönherz Design Stúdió',
+        short_name: 'schdesign',
+        start_url: '/',
+        background_color: '#3d3d3d',
+        theme_color: '#f8485e',
+        display: 'standalone',
+        icon: 'src/assets/favicon.png',
+        legacy: true,
+        /* eslint-enable */
+      },
+    },
+    'gatsby-plugin-remove-serviceworker',
+    '@rhysforyou/gatsby-plugin-react-helmet-async',
     'gatsby-plugin-sharp',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
